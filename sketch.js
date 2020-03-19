@@ -7,18 +7,19 @@ let video;
 let flippedVideo;
 // To store the classification
 let label = "";
+let changetext = false;
 
 
 //Moving sprites
 let text1= "";
 let v0x = 730;
-let v0y=140;
+let v0y=340;
 let v2x = 460;
 let start = false;
 let angle = 0;
 let angle2 = 0;
 var mainbodyx=942;
-var mainbodyy=209;
+var mainbodyy=409;
 var compare = false;
 var speed1 = 3;
 var ghost, circle1;
@@ -30,7 +31,7 @@ function preload() {
 
 function setup() {
   
-  bg = loadImage('background.png');
+  bg = loadImage('background-1.png');
   
   createCanvas(windowWidth, 800);
   
@@ -62,7 +63,7 @@ rightarm.addAnimation('floating', 'rightarm.png');
    leftarm2.addAnimation('floating', 'leftarm2.png');
   
   
-  enemy = createSprite(250,300);
+  enemy = createSprite(250,500);
 enemy.addAnimation('floating', 'enemy2.png');
   
   
@@ -122,7 +123,7 @@ background(bg);
   
  let v0 = createVector(v0x, v0y);
   let v1 = createVector(-400, -50);
-  let v2 = createVector(v2x, 200);
+  let v2 = createVector(v2x, 400);
   let v3 = createVector(400, -20);
   
   drawArrow(v0, v1.rotate(angle), 'white');
@@ -202,9 +203,9 @@ leftleg.position.y= leftleg.position.y+2;
         }
             if(enemy.position.x>=360){}
       }
-      
+      changetext = true;
     }
-    if(text1 == "Right win"){
+    if(text1 == "Right Win"){
       if(mainbody.position.x>850){
         mainbody.position.x= mainbody.position.x-5;
 leftarm.position.x= leftarm.position.x-5;
@@ -218,15 +219,21 @@ leftleg.position.x= leftleg.position.x-5;
       }
       if(mainbody.position.x<=850){
       }
+      changetext = true;
     }
     }
     var prediction = 0;
     let x= map(prediction,0,100,0,1);
- 
+   
+    if(changetext == true)
+    {
+      text1 = "0";
+    }
     
      }
   
   drawSprites();
  
+
 }
 
